@@ -1,7 +1,6 @@
 "use client"
 
 import { Canvas } from "@react-three/fiber"
-import { Environment } from "@react-three/drei"
 import { useRef, Suspense } from "react"
 import { useFrame } from "@react-three/fiber"
 import type * as THREE from "three"
@@ -120,8 +119,6 @@ export function PricingAnimation() {
           <ambientLight intensity={0.5} />
           <pointLight position={[8, 8, 8]} intensity={1} color="#ffd700" />
           <pointLight position={[-8, -8, -8]} intensity={0.6} color="#3b82f6" />
-
-          <Environment preset="studio" />
 
           <FloatingAwards />
         </Canvas>

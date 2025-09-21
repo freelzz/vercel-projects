@@ -1,7 +1,6 @@
 "use client"
 
 import { Canvas } from "@react-three/fiber"
-import { Environment } from "@react-three/drei"
 import { useRef, Suspense } from "react"
 import { useFrame } from "@react-three/fiber"
 import type * as THREE from "three"
@@ -154,8 +153,6 @@ export function HeroAnimation() {
           <pointLight position={[10, 10, 10]} intensity={1.2} color="#ffffff" />
           <pointLight position={[-10, -10, -10]} intensity={0.8} color="#3b82f6" />
           <spotLight position={[0, 20, 0]} intensity={0.5} color="#8b5cf6" />
-
-          <Environment preset="dawn" />
 
           <FloatingFitnessEquipment />
         </Canvas>

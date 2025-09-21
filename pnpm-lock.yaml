@@ -93,7 +93,7 @@ importers:
         specifier: 1.1.6
         version: 1.1.6(@types/react-dom@18.0.0)(@types/react@18.0.0)(react-dom@18.0.0(react@18.0.0))(react@18.0.0)
       '@react-three/drei':
-        specifier: latest
+        specifier: 10.7.6
         version: 10.7.6(8c50d37c1bd24483f94e0d8edf1336a5)
       '@react-three/fiber':
         specifier: latest

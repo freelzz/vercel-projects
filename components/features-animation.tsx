@@ -1,7 +1,6 @@
 "use client"
 
 import { Canvas } from "@react-three/fiber"
-import { Environment } from "@react-three/drei"
 import { useRef, Suspense } from "react"
 import { useFrame } from "@react-three/fiber"
 import type * as THREE from "three"
@@ -75,8 +74,7 @@ export function FeaturesAnimation() {
         >
           <ambientLight intensity={0.6} />
           <pointLight position={[5, 5, 5]} intensity={0.8} />
-
-          <Environment preset="studio" />
+          <pointLight position={[-5, -5, -5]} intensity={0.4} color="#3b82f6" />
 
           <FloatingMiniEquipment />
         </Canvas>
