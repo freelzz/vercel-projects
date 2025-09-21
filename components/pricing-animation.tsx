@@ -112,9 +112,6 @@ export function PricingAnimation() {
           camera={{ position: [0, 0, 6], fov: 60 }}
           style={{ background: "transparent" }}
           gl={{ preserveDrawingBuffer: true }}
-          onCreated={({ gl }) => {
-            gl.setClearColor(0x000000, 0)
-          }}
         >
           <ambientLight intensity={0.5} />
           <pointLight position={[8, 8, 8]} intensity={1} color="#ffd700" />

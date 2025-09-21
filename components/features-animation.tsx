@@ -68,9 +68,6 @@ export function FeaturesAnimation() {
           camera={{ position: [0, 0, 4], fov: 60 }}
           style={{ background: "transparent" }}
           gl={{ preserveDrawingBuffer: true }}
-          onCreated={({ gl }) => {
-            gl.setClearColor(0x000000, 0)
-          }}
         >
           <ambientLight intensity={0.6} />
           <pointLight position={[5, 5, 5]} intensity={0.8} />
