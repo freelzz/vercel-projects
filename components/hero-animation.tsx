@@ -1,8 +1,8 @@
 "use client"
 
 import { Canvas } from "@react-three/fiber"
-import { OrbitControls, Environment } from "@react-three/drei"
-import { useRef } from "react"
+import { OrbitControls } from "@react-three/drei"
+import { useRef, Suspense } from "react"
 import { useFrame } from "@react-three/fiber"
 import type * as THREE from "three"
 
@@ -147,9 +147,9 @@ export function HeroAnimation() {
         <pointLight position={[-10, -10, -10]} intensity={0.8} color="#3b82f6" />
         <spotLight position={[0, 20, 0]} intensity={0.5} color="#8b5cf6" />
 
-        <Environment preset="dawn" />
-
-        <FloatingFitnessEquipment />
+        <Suspense fallback={null}>
+          <FloatingFitnessEquipment />
+        </Suspense>
 
         <OrbitControls enableZoom={false} enablePan={false} enableRotate={false} autoRotate autoRotateSpeed={0.3} />
       </Canvas>
