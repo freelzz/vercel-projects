@@ -1,8 +1,8 @@
 "use client"
 
 import { Canvas } from "@react-three/fiber"
-import { OrbitControls, Environment } from "@react-three/drei"
-import { useRef } from "react"
+import { Environment } from "@react-three/drei"
+import { useRef, Suspense } from "react"
 import { useFrame } from "@react-three/fiber"
 import type * as THREE from "three"
 
@@ -141,18 +141,25 @@ function FloatingFitnessEquipment() {
 export function HeroAnimation() {
   return (
     <div className="w-full h-full">
-      <Canvas camera={{ position: [0, 0, 8], fov: 75 }} style={{ background: "transparent" }}>
-        <ambientLight intensity={0.4} />
-        <pointLight position={[10, 10, 10]} intensity={1.2} color="#ffffff" />
-        <pointLight position={[-10, -10, -10]} intensity={0.8} color="#3b82f6" />
-        <spotLight position={[0, 20, 0]} intensity={0.5} color="#8b5cf6" />
+      <Suspense fallback={null}>
+        <Canvas
+          camera={{ position: [0, 0, 8], fov: 75 }}
+          style={{ background: "transparent" }}
+          gl={{ preserveDrawingBuffer: true }}
+          onCreated={({ gl }) => {
+            gl.setClearColor(0x000000, 0)
+          }}
+        >
+          <ambientLight intensity={0.4} />
+          <pointLight position={[10, 10, 10]} intensity={1.2} color="#ffffff" />
+          <pointLight position={[-10, -10, -10]} intensity={0.8} color="#3b82f6" />
+          <spotLight position={[0, 20, 0]} intensity={0.5} color="#8b5cf6" />
 
-        <Environment preset="dawn" />
+          <Environment preset="dawn" />
 
-        <FloatingFitnessEquipment />
-
-        <OrbitControls enableZoom={false} enablePan={false} enableRotate={false} autoRotate autoRotateSpeed={0.3} />
-      </Canvas>
+          <FloatingFitnessEquipment />
+        </Canvas>
+      </Suspense>
     </div>
   )
 }

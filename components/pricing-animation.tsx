@@ -1,8 +1,8 @@
 "use client"
 
 import { Canvas } from "@react-three/fiber"
-import { OrbitControls, Environment } from "@react-three/drei"
-import { useRef } from "react"
+import { Environment } from "@react-three/drei"
+import { useRef, Suspense } from "react"
 import { useFrame } from "@react-three/fiber"
 import type * as THREE from "three"
 
@@ -108,17 +108,24 @@ function FloatingAwards() {
 export function PricingAnimation() {
   return (
     <div className="w-full h-full">
-      <Canvas camera={{ position: [0, 0, 6], fov: 60 }} style={{ background: "transparent" }}>
-        <ambientLight intensity={0.5} />
-        <pointLight position={[8, 8, 8]} intensity={1} color="#ffd700" />
-        <pointLight position={[-8, -8, -8]} intensity={0.6} color="#3b82f6" />
+      <Suspense fallback={null}>
+        <Canvas
+          camera={{ position: [0, 0, 6], fov: 60 }}
+          style={{ background: "transparent" }}
+          gl={{ preserveDrawingBuffer: true }}
+          onCreated={({ gl }) => {
+            gl.setClearColor(0x000000, 0)
+          }}
+        >
+          <ambientLight intensity={0.5} />
+          <pointLight position={[8, 8, 8]} intensity={1} color="#ffd700" />
+          <pointLight position={[-8, -8, -8]} intensity={0.6} color="#3b82f6" />
 
-        <Environment preset="studio" />
+          <Environment preset="studio" />
 
-        <FloatingAwards />
-
-        <OrbitControls enableZoom={false} enablePan={false} enableRotate={false} autoRotate autoRotateSpeed={0.4} />
-      </Canvas>
+          <FloatingAwards />
+        </Canvas>
+      </Suspense>
     </div>
   )
 }

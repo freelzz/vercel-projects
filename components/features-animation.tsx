@@ -1,8 +1,8 @@
 "use client"
 
 import { Canvas } from "@react-three/fiber"
-import { OrbitControls, Environment } from "@react-three/drei"
-import { useRef } from "react"
+import { Environment } from "@react-three/drei"
+import { useRef, Suspense } from "react"
 import { useFrame } from "@react-three/fiber"
 import type * as THREE from "three"
 
@@ -64,16 +64,23 @@ function FloatingMiniEquipment() {
 export function FeaturesAnimation() {
   return (
     <div className="w-full h-32">
-      <Canvas camera={{ position: [0, 0, 4], fov: 60 }} style={{ background: "transparent" }}>
-        <ambientLight intensity={0.6} />
-        <pointLight position={[5, 5, 5]} intensity={0.8} />
+      <Suspense fallback={null}>
+        <Canvas
+          camera={{ position: [0, 0, 4], fov: 60 }}
+          style={{ background: "transparent" }}
+          gl={{ preserveDrawingBuffer: true }}
+          onCreated={({ gl }) => {
+            gl.setClearColor(0x000000, 0)
+          }}
+        >
+          <ambientLight intensity={0.6} />
+          <pointLight position={[5, 5, 5]} intensity={0.8} />
 
-        <Environment preset="studio" />
+          <Environment preset="studio" />
 
-        <FloatingMiniEquipment />
-
-        <OrbitControls enableZoom={false} enablePan={false} enableRotate={false} autoRotate autoRotateSpeed={1} />
-      </Canvas>
+          <FloatingMiniEquipment />
+        </Canvas>
+      </Suspense>
     </div>
   )
 }
